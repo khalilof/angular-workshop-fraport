@@ -15,7 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BoardComponent implements OnInit {
 
-  cols!: Column[];
+  cols: Column[] = [];
 
   public showCreateTaskForm: boolean = false;
   public showCreateColumnForm: boolean = false;

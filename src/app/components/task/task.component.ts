@@ -41,8 +41,8 @@ export class TaskComponent implements OnInit, OnDestroy{
   }
 
 
-  setStatus(columnId: number): void {
-   this.task.columnId = columnId;
+  setStatus(columnId: string): void {
+   this.task.columnId = Number(columnId);
    this.update();
   }
 
