@@ -14,10 +14,10 @@
     "./**/*.d.ts"
   ],
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
+    "enableI18nLegacyMessageIdFormat": true,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": false,
-    "strictDomEventTypes": false
+    "strictTemplates": true,
+    "strictDomEventTypes": true
   }
 }

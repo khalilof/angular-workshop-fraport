@@ -3,7 +3,7 @@
   <button (click)="createNewTask()">Add new Task+</button>
 </div>
 <div class="group">
-    <input type="text"  (keyup)="assigneeFilterSubject$.next($event.target.value)">
+    <input type="text"  (keyup)="handleKeyup($event)">
     <span class="highlight"></span>
     <span class="bar"></span>
     <label>Filter by Assignee</label>

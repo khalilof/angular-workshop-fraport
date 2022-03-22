@@ -51,4 +51,8 @@ export class BoardComponent implements OnInit {
   createNewTask () {
     this.showCreateTaskForm = true;
   }
+
+  handleKeyup($event: KeyboardEvent): void {
+    this.assigneeFilterSubject$.next(($event.target as HTMLInputElement).value)
+  }
 }
