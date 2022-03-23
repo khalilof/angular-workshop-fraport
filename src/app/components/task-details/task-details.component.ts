@@ -10,18 +10,21 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'penta-task-details',
+  selector: 'ausy-task-details',
   templateUrl: './task-details.component.html',
-  styleUrls: ['./task-details.component.scss']
+  styleUrls: ['./task-details.component.scss'],
 })
 export class TaskDetailsComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute, private boardService: BoardService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private boardService: BoardService
+  ) {}
   task$!: Observable<Task>;
   ngOnInit() {
-
     this.task$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>  this.boardService.getTaskById(params.get('id')))
+      switchMap((params: ParamMap) =>
+        this.boardService.getTaskById(params.get('id'))
+      )
     );
   }
 }

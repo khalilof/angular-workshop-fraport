@@ -2,15 +2,15 @@
  * @author Khalil Khalil <khalil.khalil@ausy-technologies.de>
  */
 
-import { Component, Input, Output, OnInit, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { BoardService } from '../../../services/board.service';
 import { Column } from '../../../classes/column';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'penta-add-column',
+  selector: 'ausy-add-column',
   templateUrl: './addColumn.component.html',
-  styleUrls: [ './addColumn.component.scss' ]
+  styleUrls: ['./addColumn.component.scss'],
 })
 export class AddColumnComponent implements OnInit {
   columnForm!: FormGroup;
@@ -25,7 +25,7 @@ export class AddColumnComponent implements OnInit {
     this.newColumn = {
       title: '',
       order: 0,
-      columnId: 0
+      columnId: 0,
     };
     this.initForm();
     console.log('init ');
@@ -33,8 +33,8 @@ export class AddColumnComponent implements OnInit {
 
   initForm() {
     this.columnForm = this.fb.group({
-      title: [this.newColumn.title, Validators.required ],
-      order: [this.newColumn.order, Validators.required ],
+      title: [this.newColumn.title, Validators.required],
+      order: [this.newColumn.order, Validators.required],
     });
   }
 
@@ -44,14 +44,13 @@ export class AddColumnComponent implements OnInit {
   }
 
   saveColumn() {
-     this.boardService.createColumn(this.newColumn).subscribe(() => {
-       this.boardService.fetchColumnList();
-       this.notifyParent();
-     });
+    this.boardService.createColumn(this.newColumn).subscribe(() => {
+      this.boardService.fetchColumnList();
+      this.notifyParent();
+    });
   }
 
   hasRequiredError(form: any, field: any) {
     return form.get(field).hasError('required') && form.get(field).touched;
   }
-
 }

@@ -6,15 +6,14 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Column } from '../../classes/column';
 import { BoardService } from '../../services/board.service';
 import { Task } from '../../classes/task';
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'penta-task',
+  selector: 'ausy-task',
   templateUrl: './task.component.html',
-  styleUrls: [ './task.component.scss' ]
+  styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit, OnDestroy{
-
+export class TaskComponent implements OnInit, OnDestroy {
   @Input() task!: Task;
 
   detailsVisible: boolean = false;
@@ -26,10 +25,12 @@ export class TaskComponent implements OnInit, OnDestroy{
   constructor(private boardService: BoardService) {}
 
   ngOnInit() {
-    this.columnListSubscription = this.boardService.getColumnListSubject().subscribe((cols) => {
-      this.columns = cols;
-      this.loading = false;
-    });
+    this.columnListSubscription = this.boardService
+      .getColumnListSubject()
+      .subscribe((cols) => {
+        this.columns = cols;
+        this.loading = false;
+      });
   }
 
   showDetails() {
@@ -40,17 +41,16 @@ export class TaskComponent implements OnInit, OnDestroy{
     this.detailsVisible = false;
   }
 
-
   setStatus(columnId: string): void {
-   this.task.columnId = Number(columnId);
-   this.update();
+    this.task.columnId = Number(columnId);
+    this.update();
   }
 
   update() {
     this.loading = true;
     this.boardService.updateTask(this.task).subscribe(() => {
       this.boardService.fetchTasksList();
-   });
+    });
   }
 
   ngOnDestroy() {

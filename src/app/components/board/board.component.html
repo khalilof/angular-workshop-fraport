@@ -3,27 +3,35 @@
   <button (click)="createNewTask()">Add new Task+</button>
 </div>
 <div class="group">
-    <input type="text"  (keyup)="handleKeyup($event)">
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>Filter by Assignee</label>
+  <input type="text" (keyup)="handleKeyup($event)" />
+  <span class="highlight"></span>
+  <span class="bar"></span>
+  <label>Filter by Assignee</label>
 </div>
 
 <div class="board">
-  <penta-column [style.width]="widthOfColumn + '%'" *ngFor="let col of cols" [title]="col.title" [id]="col.columnId">
-  </penta-column>
+  <ausy-column
+    [style.width]="widthOfColumn + '%'"
+    *ngFor="let col of cols"
+    [title]="col.title"
+    [id]="col.columnId"
+  >
+  </ausy-column>
 </div>
 
+<ausy-add-column
+  class="box"
+  *ngIf="showCreateColumnForm"
+  [class.details]="showCreateColumnForm"
+  (update)="hideAddColumn($event)"
+></ausy-add-column>
 
-<penta-add-column class="box"
-                *ngIf="showCreateColumnForm"
-                [class.details]="showCreateColumnForm"
-                (update)="hideAddColumn($event)"></penta-add-column>
-
-<penta-add-task class="box"
-              *ngIf="showCreateTaskForm"
-              [class.details]="showCreateTaskForm"
-              (update)="hideAddTask($event)"></penta-add-task>
-              <!-- if (showCreateTaskForm) then add class="details" -->
+<ausy-add-task
+  class="box"
+  *ngIf="showCreateTaskForm"
+  [class.details]="showCreateTaskForm"
+  (update)="hideAddTask($event)"
+></ausy-add-task>
+<!-- if (showCreateTaskForm) then add class="details" -->
 
 <div *ngIf="showCreateColumnForm || showCreateTaskForm" id="overlay"></div>

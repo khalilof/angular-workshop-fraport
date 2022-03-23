@@ -2,15 +2,21 @@
  * @author Khalil Khalil <khalil.khalil@ausy-technologies.de>
  */
 
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Task } from '../../../classes/task';
 import { Column } from '../../../classes/column';
 import { BoardService } from '../../../services/board.service';
 
 @Component({
-  selector: 'penta-add-task',
+  selector: 'ausy-add-task',
   templateUrl: './addTask.component.html',
-  styleUrls: ['./addTask.component.scss']
+  styleUrls: ['./addTask.component.scss'],
 })
 export class AddTaskComponent implements OnInit, OnDestroy {
   newTask!: Task;
@@ -25,7 +31,7 @@ export class AddTaskComponent implements OnInit, OnDestroy {
       assignee: '',
       columnId: 0,
       epicId: 0,
-      title: ''
+      title: '',
     };
     this.boardService.getColumnListSubject().subscribe((cols) => {
       this.cols = cols;
@@ -44,7 +50,5 @@ export class AddTaskComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() {}
 }
